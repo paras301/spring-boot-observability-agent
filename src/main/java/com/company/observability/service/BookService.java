@@ -31,6 +31,7 @@ public class BookService {
 
     private void publishCustomMetric(String metricName, String description, Set<Tag> tags, double value) {
         Gauge.builder(metricName, () -> value)
+                .strongReference(true)
                 .description(description)
                 .tags(tags)
                 .register(io.micrometer.core.instrument.Metrics.globalRegistry);
